@@ -2,9 +2,11 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import validator from 'validator';
-import { startRegisterWithEmailPasswordName } from '../../actions/auth';
 
-import { removeErrorAction, setErrorAction } from '../../actions/ui';
+import { startRegisterWithEmailPasswordName } from '../../store/thunks/auth';
+
+import { uiRemoveError, uiSetError } from '../../store/slices/uiSlice';
+
 import { useForm } from '../../hooks/useForm';
 
 
@@ -35,27 +37,27 @@ export const RegisterScreen = () => {
         
         if( validator.isEmpty(name) ) {
 
-            dispatch( setErrorAction('Name is required') );
+            dispatch( uiSetError('Name is required' ) );
             return false;
 
         } else if ( !validator.isEmail(email) ) {
 
-            dispatch( setErrorAction('Must be a valid email!') );
+            dispatch( uiSetError('Must be a valid email!' ) );
             return false
 
         } else if ( password.length <= 5 ) {
 
-            dispatch( setErrorAction('Password should be at least 5 characters') );
+            dispatch( uiSetError('Password should be at least 5 characters' ) );
             return false;
 
         }  else if ( password !== password2 ) {
 
-            dispatch( setErrorAction('Passwords are not the same') );
+            dispatch( uiSetError('Passwords are not the same' ) );
             return false;
             
         }
 
-        dispatch( removeErrorAction() )
+        dispatch( uiRemoveError() )
 
             return true;
     }

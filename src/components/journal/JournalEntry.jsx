@@ -1,23 +1,19 @@
 import React from 'react';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
-import { activeNote } from '../../actions/notes';
 
-export const JournalEntry = ({title, body, date, url, id}) => {
+import { notesActive } from '../../store/slices/notesSlice';
 
+export const JournalEntry = ({note}) => {
+
+    const { title, body, date, url } = note;
 
     const dispatch = useDispatch();
 
     const noteDate = moment(date);
 
     const handleEntryClick = () => {
-        dispatch( activeNote(id, {
-            title, 
-            body, 
-            date, 
-            url, 
-            id
-        }
+        dispatch( notesActive({...note}
         ));
     };
 

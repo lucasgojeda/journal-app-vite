@@ -2,10 +2,12 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { startLoginEmailPassword, startGoogleLogin } from '../../actions/auth';
-import { startLoadingAction } from '../../actions/ui';
+import { uiStartLoading } from '../../store/slices/uiSlice';
+
+import { startGoogleLogin, startLoginEmailPassword } from '../../store/thunks/auth';
+
 import { useForm } from '../../hooks/useForm';
-import { store } from '../../store/store';
+
 
 
 export const LoginScreen = () => {
@@ -24,7 +26,7 @@ export const LoginScreen = () => {
     const handleLogin = (e) => {
         e.preventDefault();
         
-        dispatch( startLoadingAction() )
+        dispatch( uiStartLoading() )
         dispatch( startLoginEmailPassword(email, password) );
 
     }

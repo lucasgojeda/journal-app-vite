@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { startSaveNote, startUploading } from '../../actions/notes';
+import { startSaveNote, startUploading } from '../../store/thunks/notes';
 
 export const NotesAppBar = () => {
 
@@ -9,6 +9,7 @@ export const NotesAppBar = () => {
     const { active } = useSelector( state => state.notes );
 
     const handleSave = () => {
+        
         dispatch(startSaveNote(active));
     }
 

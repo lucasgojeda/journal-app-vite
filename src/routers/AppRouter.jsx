@@ -4,16 +4,17 @@ import { useDispatch } from 'react-redux';
 import {
     BrowserRouter as Router,
     Switch,
-    Route
 } from "react-router-dom";
 
 import { AuthRouter } from './AuthRouter';
-import { login } from '../actions/auth'
 import { JournalScreen } from '../components/journal/JournalScreen';
-import { startLoadingNotes } from '../actions/notes';
 
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
+
+import { login } from '../store/slices/authSlice';
+
+import { startLoadingNotes } from '../store/thunks/notes';
 
 
 export const AppRouter = () => {
@@ -32,10 +33,10 @@ export const AppRouter = () => {
 
             if (user?.uid) {
 
-                dispatch(login(user.uid, user.displayName));
+                dispatch(login({uid: user.uid, displayName: user.displayName}));
                 setIsLoggedIn(true);
 
-                dispatch(startLoadingNotes(user.uid ));
+                dispatch(startLoadingNotes(user.uid));
             } else {
                 setIsLoggedIn(false);
             }

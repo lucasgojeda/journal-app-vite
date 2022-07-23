@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { NotesAppBar } from './NotesAppBar';
 import { useForm } from '../../hooks/useForm';
-import { activeNote, startDeleting } from '../../actions/notes';
+import { startDeleting } from '../../store/thunks/notes';
+import { notesActive } from '../../store/slices/notesSlice';
 
 
 export const NoteScreen = () => {
@@ -26,7 +27,14 @@ export const NoteScreen = () => {
 
     useEffect(() => {
 
-        dispatch(activeNote(formValues.id, { ...formValues })  );
+
+        dispatch(notesActive({
+            title: formValues.title,
+            body: formValues.body,
+            id: note.id,
+            url: note.url,
+            date: note.date
+        })  );
         
     }, [formValues, dispatch]);
 

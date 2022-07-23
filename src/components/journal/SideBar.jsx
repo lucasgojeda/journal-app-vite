@@ -2,8 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { JournalEntries } from './JournalEntries';
-import { startLogoutAction } from '../../actions/auth';
-import { startNewNote } from '../../actions/notes';
+import { startLogoutAction } from '../../store/thunks/auth';
+import { startNewNote } from '../../store/thunks/notes';
 
 
 export const SideBar = () => {
