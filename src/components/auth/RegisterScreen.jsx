@@ -9,7 +9,10 @@ import { uiRemoveError, uiSetError } from '../../store/slices/uiSlice';
 
 import { useForm } from '../../hooks/useForm';
 
-
+/**
+ * Este componente es aquel mediante el cuál el usuario podrá registrarse en la aplicación.
+ * @module RegisterScreen
+ */
 export const RegisterScreen = () => {
 
     const dispatch = useDispatch();
@@ -24,6 +27,10 @@ export const RegisterScreen = () => {
 
     const { name, email, password, password2 } = formValues;
 
+    /**
+     * Con la siguiente función registramos un usuario en base a los valores 
+     * en el "formValues".
+     */
     const handleRegister = (e) => {
         e.preventDefault();
 
@@ -33,6 +40,15 @@ export const RegisterScreen = () => {
 
     }
 
+    /**
+     * Con la siguiente función validamos en una forma un poco rudimentaria los 
+     * valores que van a ser enviados a la función que registra el usuario.
+     * Observación: Lo ideal sería realizar este procedimiento utilizando expresiones 
+     * regulares, pero al ser un proyecto hecho en el curso de fernando herrera prefiero 
+     * dejarlo asi, pero en proximos proyectos utilizaré expresiones regulares o alguna 
+     * libreria que las utilice para realizar esta tarea.
+     * @returns { Boolean }
+     */
     const isFormValid = () => {
         
         if( validator.isEmpty(name) ) {

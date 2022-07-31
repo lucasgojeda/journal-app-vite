@@ -16,7 +16,11 @@ import { login } from '../store/slices/authSlice';
 
 import { startLoadingNotes } from '../store/thunks/notes';
 
-
+/**
+ * Este componente maneja las rutas "/auth" y "/*", en este componente
+ * se encuentran colocados los componentes AuthRouter y JournalScreen.
+ * @module AppRouter
+ */
 export const AppRouter = () => {
 
     const dispatch = useDispatch();

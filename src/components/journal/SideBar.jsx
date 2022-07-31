@@ -5,17 +5,27 @@ import { JournalEntries } from './JournalEntries';
 import { startLogoutAction } from '../../store/thunks/auth';
 import { startNewNote } from '../../store/thunks/notes';
 
-
+/**
+ * Este componente es la barra lateral derecha que contiene las notas juntos con 
+ * las opciones de cerrar sesión y de agregar nuevas notas.
+ * @module SideBar
+ */
 export const SideBar = () => {
 
     const { name } = useSelector(state => state.auth);
 
     const dispatch = useDispatch();
 
+    /**
+     * Con la siguiente función cerramos sesión.
+     */
     const handleLogout = () => {
         dispatch( startLogoutAction() );
     }
 
+    /**
+     * Con la siguiente función creamos una nueva nota.
+     */
     const handleAddNew = () => {
         dispatch( startNewNote() );
     }

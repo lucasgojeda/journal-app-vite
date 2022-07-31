@@ -9,7 +9,10 @@ import { startGoogleLogin, startLoginEmailPassword } from '../../store/thunks/au
 import { useForm } from '../../hooks/useForm';
 
 
-
+/**
+ * Este componente es aquel mediante el cuál el usuario podrá iniciar sesión en la aplicación.
+ * @module LoginScreen
+ */
 export const LoginScreen = () => {
 
     const dispatch = useDispatch();
@@ -23,6 +26,10 @@ export const LoginScreen = () => {
 
     const { email, password } = formValues;
 
+    /**
+     * Con la siguiente función el usuario inicia sesión en base
+     * a los datos introducidos por el input a la variable "formValues".
+     */
     const handleLogin = (e) => {
         e.preventDefault();
         
@@ -31,6 +38,10 @@ export const LoginScreen = () => {
 
     }
 
+    /**
+     * Con la siguiente función abrimos la ventana emergente de google 
+     * para iniciar sesión con una cuenta de google.
+     */
     const handleGoogleLogin = () => {
         dispatch( startGoogleLogin() )
     }

@@ -5,7 +5,12 @@ import { NoteScreen } from '../notes/NoteScreen';
 import { SideBar } from './SideBar';
 import { NothingSelected } from './NothingSelected';
 
-
+/**
+ * Este componente se encarga de mostrar el componente "NoteScreen" en caso de que 
+ * haya una nota seleccionada o el componente "NothingSelected" en caso de que no 
+ * haya ninguna nota seleccionada.
+ * @module JournalScreen
+ */
 export const JournalScreen = () => {
 
     const { active } = useSelector( state => state.notes );

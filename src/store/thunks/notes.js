@@ -21,7 +21,18 @@ import {
     notesUpdated
 } from "../slices/notesSlice";
 
+/**
+ * En este thunk encontramos las acciones relacionadas a las notas de la 
+ * aplicación.
+ * @module Thunk-Notes
+ */
 
+
+/**
+ * Esta función se encarga de crear una nueva nota.
+ * @function
+ * @async
+ */
 export const startNewNote = () => {
     return async (dispatch, getState) => {
 
@@ -42,6 +53,13 @@ export const startNewNote = () => {
     };
 };
 
+/**
+ * Esta función se encarga de cargar las notas al momento de que el usuario inicia 
+ * sesión.
+ * @function
+ * @async
+ * @param {String} uid - uid proporcionado por firebase personal de cada usuario.
+ */
 export const startLoadingNotes = (uid) => {
     return async (dispatch) => {
         const notes = await loadNotes(uid);
@@ -49,6 +67,20 @@ export const startLoadingNotes = (uid) => {
     }
 }
 
+/**
+ * Esta función se encarga de guardar la nota anteriormente creada pero ahora con 
+ * información en la base de datos.
+ * @function
+ * @async
+ * @param {Object} note - Nota a ser guardada.
+ * @example {
+            title: String,
+            body: String,
+            date: Date,
+            url: String,
+            id: String
+        }
+ */
 export const startSaveNote = (note) => {
     return async (dispatch, getState) => {
         const { uid } = getState().auth;
@@ -69,6 +101,13 @@ export const startSaveNote = (note) => {
     }
 }
 
+/**
+ * Esta función se encarga de iniciar el procedimiento de subida de la imagen 
+ * a cloudinary.
+ * @function
+ * @async
+ * @param {file} file - Imagen a ser subida.
+ */
 export const startUploading = (file) => {
     return async (dispatch, getState) => {
         const { active: activeNote } = getState().notes;
@@ -83,7 +122,7 @@ export const startUploading = (file) => {
                     Swal.showLoading();
                 }
             });
-
+ 
             const fileUrl = await fileUpload(file);
 
             console.log(fileUrl)
@@ -108,6 +147,12 @@ export const startUploading = (file) => {
 
 }
 
+/**
+ * Esta función se encarga de eliminar una nota especifica en base al id enviado.
+ * @function
+ * @async
+ * @param {String} id - id de la nota.
+ */
 export const startDeleting = (id) => {
     return async (dispatch, getState) => {
 

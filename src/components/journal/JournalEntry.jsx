@@ -4,6 +4,20 @@ import { useDispatch } from 'react-redux';
 
 import { notesActive } from '../../store/slices/notesSlice';
 
+
+/**
+ * Este componente es aquel que muestra individualmente una vista previa de cada 
+ * nota dentro del componente "SideBar".
+ * @module JournalEntry
+ * @property {note} - Nota
+ * @example {
+ *      title: String,
+ *      body: String,
+ *      url: String,
+ *      date: Date,
+ *      id: String
+ * }
+ */
 export const JournalEntry = ({note}) => {
 
     const { title, body, date, url } = note;
@@ -12,6 +26,10 @@ export const JournalEntry = ({note}) => {
 
     const noteDate = moment(date);
 
+    /**
+     * La siguiente función se encarga de marcar como activo una nota para ser 
+     * posteriormente editada o eliminada.
+     */
     const handleEntryClick = () => {
         dispatch( notesActive({...note}
         ));

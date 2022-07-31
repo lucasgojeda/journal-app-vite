@@ -1,5 +1,11 @@
 
 
+/**
+ * Esta función se encarga de subir las imagenes a la cloudinary.
+ * @function
+ * @param {file} file - Archivo a ser subido.
+ * @returns {String} - Retorna el url de la imagen subida a cloudinary.
+ */
 export const fileUpload = async( file ) => {
     const cloudUrl = 'https://api.cloudinary.com/v1_1/the-kings-company/image/upload';
 

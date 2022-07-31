@@ -2,12 +2,19 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { startSaveNote, startUploading } from '../../store/thunks/notes';
 
+/**
+ * Este componente posee los botones de guardar y de agregar una foto a la nota.
+ * @module NotesAppBar
+ */
 export const NotesAppBar = () => {
 
     const dispatch = useDispatch();
 
     const { active } = useSelector( state => state.notes );
 
+    /**
+     * La siguiente función se encarga de realizar el dispatch que guarda la nota.
+     */
     const handleSave = () => {
         
         dispatch(startSaveNote(active));
@@ -18,6 +25,11 @@ export const NotesAppBar = () => {
 
     }
 
+    /**
+     * La siguiente función se encarga de realizar el dispatch de la función
+     * que realiza el uploading de la imagen cada vez que el input file recibe un nuevo 
+     * archivo.
+     */
     const handleFileChange = (e) => {
         const file = e.target.files[0];
 

@@ -3,7 +3,11 @@ import { useSelector } from 'react-redux';
 
 import { JournalEntry } from './JournalEntry';
 
-
+/**
+ * Este componente se encarga de mostrar las vistas previas de las notas dentro 
+ * del componente "SideBar".
+ * @module JournalEntries
+ */
 export const JournalEntries = () => {
 
     const { notes } = useSelector( state => state.notes );

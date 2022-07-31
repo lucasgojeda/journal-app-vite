@@ -9,7 +9,11 @@ import {
 import { LoginScreen } from '../components/auth/LoginScreen';
 import { RegisterScreen } from '../components/auth/RegisterScreen';
 
-
+/**
+ * Este componente se encarga de manejar las rutas relacionadas a la autenticación 
+ * de la aplicación.
+ * @module AuthRouter
+ */
 export const AuthRouter = () => {
     return (
         <div className='auth__main' >
