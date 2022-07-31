@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Documentación - Global</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="styles/docs.css" rel="stylesheet">
+    <link href="styles/bootstrap-custom.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+          <div class="span4">
+              <h2><a href="index.html">Inicio</a></h2><div class="well well-small"><ul class="nav nav-list"><li class="nav-header">Modules</li><li><a href="module-AppRouter.html">AppRouter</a></li>
+<li><a href="module-AuthRouter.html">AuthRouter</a></li>
+<li><a href="module-JournalEntries.html">JournalEntries</a></li>
+<li><a href="module-JournalEntry.html">JournalEntry</a></li>
+<li><a href="module-JournalScreen.html">JournalScreen</a></li>
+<li><a href="module-LoginScreen.html">LoginScreen</a></li>
+<li><a href="module-main.html">main</a></li>
+<li><a href="module-NotesAppBar.html">NotesAppBar</a></li>
+<li><a href="module-NoteScreen.html">NoteScreen</a></li>
+<li><a href="module-NothingSelected.html">NothingSelected</a></li>
+<li><a href="module-PrivateRoute.html">PrivateRoute</a></li>
+<li><a href="module-PublicRoute.html">PublicRoute</a></li>
+<li><a href="module-RegisterScreen.html">RegisterScreen</a></li>
+<li><a href="module-SideBar.html">SideBar</a></li>
+<li><a href="module-store.html">store</a></li>
+<li><a href="module-Thunk-Auth.html">Thunk-Auth</a></li>
+<li><a href="module-Thunk-Notes.html">Thunk-Notes</a></li></ul></div><div class="well well-small"><ul class="nav nav-list"><li class="nav-header">Global</li><li><a href="global.html#fileUpload"><i class="icon-globe" style="color: black;"></i> fileUpload</a></li><li><a href="global.html#loadNotes"><i class="icon-globe" style="color: black;"></i> loadNotes</a></li></ul></div>
+          </div>
+
+          <div class="span8">
+
+              <h1 class="page-header">Global</h1>
+              
+
+
+
+<section>
+    
+<header>
+    <!--h2>
+    
+    </h2-->
+    
+</header>  
+
+<article>
+    <div class="container-overview hero-unit">
+    
+
+    
+
+    
+    
+    
+        
+        
+        
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+        
+        
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        <h3 class="subsection-title">Methods</h3>
+        
+        <dl class="bs-docs-example bs-methods">
+            
+<dt>
+    <h4 class="name" id="fileUpload">fileUpload<span class="signature">(file)</span><span class="type-signature"> &rarr; {String}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>
+        Esta función se encarga de subir las imagenes a la cloudinary.
+        </p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-bordered table-condensed">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name">file</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">file</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Archivo a ser subido.</td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            <div class="returns">
+
+
+    
+<span class="param-type">String</span>
+
+
+
+
+<span class="param-desc">
+    - Retorna el url de la imagen subida a cloudinary.
+</span>
+
+</div>
+
+        
+    
+    
+</dd>
+
+        
+            
+<dt>
+    <h4 class="name" id="loadNotes">loadNotes<span class="signature">(uid)</span><span class="type-signature"> &rarr; {Array.&lt;Object>}</span></h4>
+    
+    
+</dt>
+<dd>
+    
+    
+    <div class="description">
+        <p>
+        Esta función se encarga de hacer la petición a firebase para obtener las notas 
+al momento de iniciar sesión.
+        </p>
+    </div>
+    
+
+    
+    
+    
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-bordered table-condensed">
+    <thead>
+	<tr>
+		
+		<th>Name</th>
+		
+
+		<th>Type</th>
+
+		
+
+		
+
+		<th class="last">Description</th>
+	</tr>
+	</thead>
+
+	<tbody>
+	
+
+        <tr>
+            
+                <td class="name">uid</td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Es el uid proporcionado por Firebase.</td>
+        </tr>
+
+	
+	</tbody>
+</table>
+
+    
+    
+    
+<dl class="details">
+    
+        
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+</dl>
+
+    
+    
+
+    
+
+    
+    
+    
+    
+    
+    <h5>Returns:</h5>
+    
+            <div class="returns">
+
+
+    
+<span class="param-type">Array.&lt;Object></span>
+
+
+
+
+</div>
+
+        
+    
+    
+</dd>
+
+        </dl>
+    
+    
+    
+    
+    
+</article>
+
+</section>  
+
+
+
+
+
+          </div>
+      </div>
+
+        <br clear="both">
+
+      <script> prettyPrint(); </script>
+    </div>
+  </body>
+</html>
