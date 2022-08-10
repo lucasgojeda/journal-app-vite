@@ -35,7 +35,7 @@ export const startLoginEmailPassword = (email, password) => {
 
         signInWithEmailAndPassword(auth, email, password)
             .then(({ user }) => {
-
+                
                 dispatch(login({ uid: user.uid, displayName: user.displayName }))
                 dispatch(uiFinishLoading())
             })
@@ -62,14 +62,13 @@ export const startRegisterWithEmailPasswordName = (email, password, name) => {
         const auth = getAuth();
 
         createUserWithEmailAndPassword(auth, email, password)
-            .then(async ({ user }) => {
+            .then(async({ user }) => {
 
-                await updateProfile(auth.currentUser, {
-                    displayName: name
-                })
-
-                console.log(user);
                 dispatch(login(user.uid, user.displayName))
+            
+                await updateProfile(auth?.currentUser, {
+                    displayName: name
+                }) 
             })
             .catch((error) => {
                 console.log(error.message, error.code);

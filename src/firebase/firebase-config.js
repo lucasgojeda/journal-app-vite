@@ -1,17 +1,21 @@
-
-const apiKey = import.meta.env.VITE_FIREBASE_apiKey;
-const authDomain = import.meta.env.VITE_FIREBASE_authDomain;
-const projectId = import.meta.env.VITE_FIREBASE_projectId;
-const storageBucket = import.meta.env.VITE_FIREBASE_storageBucket;
-const messagingSenderId = import.meta.env.VITE_FIREBASE_messagingSenderId;
-const appId = import.meta.env.VITE_FIREBASE_appId;
-const measurementId = import.meta.env.VITE_FIREBASE_measurementId;
-
 // Import the functions you need from the SDKs you need
 
-import { initializeApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
-import { GoogleAuthProvider } from "firebase/auth";
+import { initializeApp } from 'firebase/app';
+import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore/lite';
+
+
+import { getEnvironmets } from "../helpers/getEnvironmets";
+
+const { 
+  VITE_FIREBASE_apiKey: apiKey, 
+  VITE_FIREBASE_authDomain: authDomain, 
+  VITE_FIREBASE_projectId: projectId, 
+  VITE_FIREBASE_storageBucket: storageBucket, 
+  VITE_FIREBASE_messagingSenderId: messagingSenderId, 
+  VITE_FIREBASE_appId: appId, 
+  VITE_FIREBASE_measurementId: measurementId, 
+} = getEnvironmets();
 
 
 // Your web app"s Firebase configuration
@@ -25,14 +29,10 @@ const firebaseConfig = {
   measurementId,
 };
 
+
+
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore();
-
-const googleAuthProvider = new GoogleAuthProvider();
-
-export {
-  db,
-  googleAuthProvider
-}
+export const FirebaseApp  = initializeApp(firebaseConfig);
+export const FirebaseAuth = getAuth( FirebaseApp );
+export const FirebaseDB   = getFirestore( FirebaseApp );
+export const googleAuthProvider = new GoogleAuthProvider();

@@ -17,9 +17,9 @@ export const LoginScreen = () => {
 
     const dispatch = useDispatch();
 
-    const { loading } = useSelector( state => state.ui )
+    const { loading } = useSelector(state => state.ui)
 
-    const [ formValues, handleInputChange, reset ] = useForm({
+    const [formValues, handleInputChange, reset] = useForm({
         email: 'nando@gmail.com',
         password: '123456'
     });
@@ -32,10 +32,9 @@ export const LoginScreen = () => {
      */
     const handleLogin = (e) => {
         e.preventDefault();
-        
-        dispatch( uiStartLoading() )
-        dispatch( startLoginEmailPassword(email, password) );
 
+        dispatch(uiStartLoading())
+        dispatch(startLoginEmailPassword(email, password));
     }
 
     /**
@@ -43,16 +42,19 @@ export const LoginScreen = () => {
      * para iniciar sesión con una cuenta de google.
      */
     const handleGoogleLogin = () => {
-        dispatch( startGoogleLogin() )
+
+        dispatch(startGoogleLogin());
     }
 
     return (
         <>
             <h3 className='auth__title' >Login</h3>
             <form
+                aria-label='submit-form'
                 onSubmit={handleLogin}
             >
                 <input
+                    aria-label='emailField'
                     className='auth__input'
                     type='text'
                     placeholder='Email'
@@ -63,6 +65,7 @@ export const LoginScreen = () => {
                 />
 
                 <input
+                    aria-label='passwordField'
                     className='auth__input'
                     type='password'
                     placeholder='Password'
@@ -75,7 +78,7 @@ export const LoginScreen = () => {
                 <button
                     type='submit'
                     className='btn btn-primary btn-block'
-                    disabled={ loading }
+                    disabled={loading}
                 >
                     Ingresar
                 </button>
@@ -85,6 +88,7 @@ export const LoginScreen = () => {
                 </div>
 
                 <div
+                    aria-label='GoogleLoginButton'
                     className="google-btn"
                     onClick={handleGoogleLogin}
                 >
@@ -96,7 +100,7 @@ export const LoginScreen = () => {
                     </p>
                 </div>
 
-                <Link to='/auth/register' 
+                <Link to='/auth/register'
                     className='link'
                 >
                     Create new account

@@ -64,14 +64,6 @@ export const notesSlice = createSlice({
       state.notes = state.notes.filter(note => note.id !== action.payload);
     },
     /**
-     * Pone el estado inicial dentro del slice notes, lo usamos cuando cerramos sesión.
-     */
-    notesLogoutCleaning: (state) => {
-
-      state.notes = [];
-      state.active = null;
-    },
-    /**
      * Agrega una nueva nota en el array "notes".
      * @param {Object} note - Nota a crear.
      * @example {
@@ -86,7 +78,14 @@ export const notesSlice = createSlice({
 
       state.notes = [action.payload, ...state.notes];
     },
+    /**
+     * Pone el estado inicial dentro del slice notes, lo usamos cuando cerramos sesión.
+     */
+    notesLogoutCleaning: (state) => {
 
+      state.notes = [];
+      state.active = null;
+    },
   },
 })
 

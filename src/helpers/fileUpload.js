@@ -7,6 +7,11 @@
  * @returns {String} - Retorna el url de la imagen subida a cloudinary.
  */
 export const fileUpload = async( file ) => {
+
+    if(!file) {
+        return null;
+    }
+
     const cloudUrl = 'https://api.cloudinary.com/v1_1/the-kings-company/image/upload';
 
     const formData = new FormData();

@@ -1,16 +1,10 @@
-import {
-    collection,
-    addDoc,
-    updateDoc,
-    doc,
-    deleteDoc
-} from "firebase/firestore";
+import { collection, deleteDoc, doc, setDoc } from 'firebase/firestore/lite';
 
 import Swal from 'sweetalert2';
 
-import { db } from '../../firebase/firebase-config';
+import { FirebaseDB } from '../../firebase/firebase-config';
 
-import { fileUpload } from "../../helpers/fileUpload"; 
+import { fileUpload } from "../../helpers/fileUpload";
 import { loadNotes } from "../../helpers/loadNotes";
 
 import {
@@ -20,6 +14,7 @@ import {
     notesLoad,
     notesUpdated
 } from "../slices/notesSlice";
+
 
 /**
  * En este thunk encontramos las acciones relacionadas a las notas de la 
@@ -36,20 +31,31 @@ import {
 export const startNewNote = () => {
     return async (dispatch, getState) => {
 
-        const { uid } = getState().auth;
+        try {
 
-        const newNote = {
-            title: 'Titulo',
-            body: 'Nota',
-            date: new Date().getTime()
+            const { uid } = getState().auth;
+
+            const newNote = {
+                title: 'Titulo',
+                body: 'Nota',
+                date: new Date().getTime()
+            }
+
+            // const doc = await setDoc(collection(FirebaseDB, `${uid}`, "journal/notes"), newNote);
+            
+            const newDoc = doc( collection( FirebaseDB, `${ uid }/journal/notes`) );
+            await setDoc( newDoc, newNote );
+
+            newNote.id = newDoc.id;
+
+            // console.log("Document written with ID: ", doc);
+            
+            dispatch(notesActive(newNote));
+            dispatch(notesAddNew(newNote));
+
+        } catch (error) {
+            console.log(error)
         }
-
-        const doc = await addDoc(collection(db, `${uid}`, "journal/notes"), newNote);
-        console.log("Document written with ID: ", doc);
-
-        dispatch(notesActive({ id: doc.id, ...newNote }));
-        dispatch(notesAddNew({ id: doc.id, ...newNote }));
-
     };
 };
 
@@ -61,13 +67,13 @@ export const startNewNote = () => {
  * @param {String} uid - uid proporcionado por firebase personal de cada usuario.
  */
 export const startLoadingNotes = (uid) => {
-    return async (dispatch) => {
+    return async(dispatch) => {
         const notes = await loadNotes(uid);
         dispatch(notesLoad(notes));
     }
 }
 
-/**
+/** 
  * Esta función se encarga de guardar la nota anteriormente creada pero ahora con 
  * información en la base de datos.
  * @function
@@ -81,19 +87,26 @@ export const startLoadingNotes = (uid) => {
             id: String
         }
  */
-export const startSaveNote = (note) => {
+export const startSaveNote = (noteSended) => {
     return async (dispatch, getState) => {
         const { uid } = getState().auth;
 
-        if (note.url === undefined || note.url === null || note.url === '') {
-            delete note.url
-        };
+
+        const _delete = (noteSended) => {
+            if (noteSended.url === undefined || noteSended.url === null || noteSended.url === '') {
+                const { url, ...data } = noteSended;
+                return data;
+            } else {
+                return noteSended
+            }
+        }
+        const note = _delete(noteSended);
 
         const noteToFirestore = { ...note };
         delete noteToFirestore.id;
 
-        const noteRef = doc(db, `${uid}/journal/notes/${note.id}`);
-        await updateDoc(noteRef, noteToFirestore);
+        const noteRef = doc( FirebaseDB, `${ uid }/journal/notes/${ note.id }` );
+        await setDoc(noteRef, noteToFirestore, { merge: true });
 
         dispatch(notesUpdated({ id: note.id, ...noteToFirestore }));
         dispatch(notesActive({ id: note.id, ...noteToFirestore }));
@@ -122,12 +135,8 @@ export const startUploading = (file) => {
                     Swal.showLoading();
                 }
             });
- 
+
             const fileUrl = await fileUpload(file);
-
-            console.log(fileUrl)
-            console.log(activeNote)
-
 
             dispatch(startSaveNote({
                 title: activeNote.title,
@@ -157,7 +166,8 @@ export const startDeleting = (id) => {
     return async (dispatch, getState) => {
 
         const uid = getState().auth.uid;
-        const noteRef = doc(db, `${uid}/journal/notes/${id}`)
+
+        const noteRef = doc(FirebaseDB, `${uid}/journal/notes/${id}`)
         await deleteDoc(noteRef);
 
         dispatch(notesDelete(id));

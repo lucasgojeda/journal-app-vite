@@ -1,6 +1,6 @@
-import { collection, query, getDocs } from "@firebase/firestore";
-import { db } from "../firebase/firebase-config";
- 
+import { collection, getDocs } from 'firebase/firestore/lite';
+import { FirebaseDB } from "../firebase/firebase-config";
+
 /**
  * Esta función se encarga de hacer la petición a firebase para obtener las notas 
  * al momento de iniciar sesión.
@@ -8,16 +8,22 @@ import { db } from "../firebase/firebase-config";
  * @param {String} uid - Es el uid proporcionado por Firebase. 
  * @returns {Array<Object>}
  */
-export const loadNotes = async(uid) => {
- 
-    const notesSnap = await getDocs(query(collection(db, `${ uid }/journal/notes`)));
+export const loadNotes = async (uid) => {
+
+    if (!uid) throw new Error('El UID del usuario no existe');
+
+    const collectionRef = collection(FirebaseDB, `${uid}/journal/notes`);
+    const docs = await getDocs(collectionRef);
+
     const notes = [];
- 
-    notesSnap.forEach( snapHijo => {
-        notes.push({
-            id: snapHijo.id,
-            ...snapHijo.data()
-        })
-      });
+    docs.forEach(doc => {
+        notes.push({ id: doc.id, ...doc.data() });
+    });
+
     return notes;
 };
+
+
+
+
+
