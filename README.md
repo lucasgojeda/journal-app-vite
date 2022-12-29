@@ -1,24 +1,23 @@
 # Journal App
 
-_Aplicación para crear notas_
+_Notes application_
 
-## Requisitos y tutorial 🚀
+## Requirements and tutorial 🚀
 
-Para hacer funcionar este proyecto se requiere como primero tener instalado
-**node js**
+To make this project work it is required as first to have installed **node js**
 
-Luego se requiere introducir el siguiente comando en la consola:
+Then it is required to enter the following command in the console:
 ```
 $ npm i
 ```
 
-Después se deben colocar las variables de entorno que son requeridas creando el archivo **.env**, de más está decir que el proyecto cuenta con uno de ejemplo, dicho archivo es el que tiene como nombre **.env.example**, las variables de entorno requeridas son las correspondientes a firebase, las cuales desde las variables de entorno seran colocadas en el archivo **firebase-config.js**.
+Then the environment variables that are required must be placed creating the **.env** file, it goes without saying that the project has an example, said file is the one with the name **.env.example** , the required environment variables are those corresponding to firebase, which from the environment variables will be placed in the **firebase-config.js** file.
 
-Listo, la aplicación ya está lista para ser iniciada con el siguiente comando:
+Done, the application is ready to be started with the following command:
 ```
 $ npm run dev
 ```
 
-## Documentación 🖇️
+## Documentation 🖇️
 
-Por favor dirijase a la [documentación](https://lucasgojeda.github.io/journal-app-vite/) para obetener detalles acerca del funcionamiento del código.
+Please refer to the [documentación](https://lucasgojeda.github.io/journal-app-vite/) for details on how the code works.
